@@ -17,13 +17,19 @@ public class WindowGame extends BasicGame {
 
 	private GameContainer container=null;
 	private TiledMap map;
-	private float x = 400, y = 400, widthA=23,heightA=68;
+	private float x = 400, y = 400, widthA=23,heightA=68;;
+	private float v = 300, w = 300;
 	private int direction = 0;
+	private int direction2 = 0;
 	private int lr=0;
+	private int lr2=0;
 	private boolean moving = false;
+	private boolean moving2 = false;
 	private Animation[] animationsR = new Animation[8];
 	private Animation[] animationsL=new Animation[8];
-
+	private Animation[] animations2R = new Animation[8];
+	private Animation[] animations2L=new Animation[8];
+	
 	public WindowGame() {
         super("StickMan:: WindowGame");
     }
@@ -50,11 +56,30 @@ public class WindowGame extends BasicGame {
         this.animationsL[5] = loadAnimation(spriteSheet, 0, 7, 1); //Avancer gauche
         this.animationsL[6] = loadAnimation(spriteSheet, 1, 2, 4); //bas
         this.animationsL[7] = loadAnimation(spriteSheet, 0, 7, 2); // Avancer droite
+        
+        SpriteSheet spriteSheet2 = new SpriteSheet("src/ressource/sprites/ninja.png", 50, 78);
+    	this.animations2R[0] = loadAnimation(spriteSheet2, 0, 1, 2); //-D
+    	this.animations2R[1] = loadAnimation(spriteSheet2, 0, 1, 1); //-G
+    	this.animations2R[2] = loadAnimation(spriteSheet2, 0, 1, 2); //-D
+    	this.animations2R[3] = loadAnimation(spriteSheet2, 0, 1, 2); //-D
+    	this.animations2R[4] = loadAnimation(spriteSheet2, 6, 7, 4); //-D
+        this.animations2R[5] = loadAnimation(spriteSheet2, 0, 7, 1); //Avancer gauche
+        this.animations2R[6] = loadAnimation(spriteSheet2, 5, 6, 4); //bas
+        this.animations2R[7] = loadAnimation(spriteSheet2, 0, 7, 2); // Avancer droite
+        
+        this.animations2L[0] = loadAnimation(spriteSheet2, 0, 1, 1); //-G
+    	this.animations2L[1] = loadAnimation(spriteSheet2, 0, 1, 1); //-G
+    	this.animations2L[2] = loadAnimation(spriteSheet2, 0, 1, 1); //-G
+    	this.animations2L[3] = loadAnimation(spriteSheet2, 0, 1, 2); //-D
+    	this.animations2L[4] = loadAnimation(spriteSheet2, 2, 3, 4); //-D
+        this.animations2L[5] = loadAnimation(spriteSheet2, 0, 7, 1); //Avancer gauche
+        this.animations2L[6] = loadAnimation(spriteSheet2, 1, 2, 4); //bas
+        this.animations2L[7] = loadAnimation(spriteSheet2, 0, 7, 2); // Avancer droite
     }
    private Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
         Animation animation = new Animation();
         for (int x = startX; x < endX; x++) {
-            animation.addFrame(spriteSheet.getSprite(x, y), 80);
+            animation.addFrame(spriteSheet.getSprite(x, y), 100);
         }
         return animation;
     }
@@ -77,6 +102,18 @@ public class WindowGame extends BasicGame {
         case Input.KEY_RIGHT: 
           if(direction == 3) this.moving = false;
             break;
+        case Input.KEY_Z: 								//haut
+            if(direction2 == 0) this.moving2 = false;
+              break;
+        case Input.KEY_A: 								//Gauche
+            if(direction2 == 1) this.moving2 = false;
+              break;
+        case Input.KEY_S: 								//bas
+            if(direction2 == 2) this.moving2 = false;
+              break;
+        case Input.KEY_E: 								//droite
+            if(direction2 == 3) this.moving2 = false;
+              break;
           }
       }
 
@@ -91,6 +128,10 @@ public class WindowGame extends BasicGame {
             case Input.KEY_LEFT:  this.direction = 1; this.moving = true; this.lr=1; break;
             case Input.KEY_DOWN:  this.direction = 2; this.moving = true; break;
             case Input.KEY_RIGHT: this.direction = 3; this.moving = true; this.lr=0; break;
+            case Input.KEY_Z:   this.direction2 = 0; this.moving2 = true; break;
+            case Input.KEY_A:  this.direction2 = 1; this.moving2 = true; this.lr2=1; break;
+            case Input.KEY_S:  this.direction2 = 2; this.moving2 = true; break;
+            case Input.KEY_E: this.direction2 = 3; this.moving2 = true; this.lr2=0; break;
         }
         
     }
@@ -98,29 +139,52 @@ public class WindowGame extends BasicGame {
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
     	this.map.render(0, 0, 0);
-        if(lr==0) { g.drawAnimation(animationsR[direction + (moving ? 4 : 0)], x-35, y-71);}
-    	else if(lr==1) {g.drawAnimation(animationsL[direction + (moving ? 4 : 0)], x-35, y-71);}
-      
+    	if(lr2==0) { g.drawAnimation(animations2R[direction2 + (moving2 ? 4 : 0)], v-44, w-76);}
+    	else if(lr2==1) {g.drawAnimation(animations2L[direction2 + (moving2 ? 4 : 0)], v-44, w-76);}
+        if(lr==0) { g.drawAnimation(animationsR[direction + (moving ? 4 : 0)], x-44, y-76);}
+    	else if(lr==1) {g.drawAnimation(animationsL[direction + (moving ? 4 : 0)], x-44, y-76);}
+        if(x<0){
+			x=1020;
+		}
+        if(v<0){
+        	v=1020;
+        }
+        if(x>1020){
+			x=0;
+		}
+        if(v>1020){
+        	v=0;
+        }
     }
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
     	 boolean collision=false;
+    	 boolean collision2=false;
     	 float futurX = getFuturX(delta);
 	     float futurY = getFuturY(delta);
+	     float futurX2 = getFuturX2(delta);
+	     float futurY2 = getFuturY2(delta);
 	     float Gravity=getGravity(delta);
+	     float Gravity2=getGravity2(delta);
 	        for (int i=0;i<widthA;i++) {
 	        	for (int j=0;j<heightA;j++) {
-	        		collision = isCollision(futurX-i, Gravity-j);
+	        		collision = isCollision(this.x, Gravity-j);
+	        		collision2= isCollision(this.v, Gravity2-j);
 	        		if(collision==true) {break;}
+	        		if(collision2==true) {break;}
 	        		}
 	        	if(collision==true) {break;}
+	        	if(collision2==true) {break;}
 	        	}
     	 if(collision==false) {
     		 this.y = Gravity;
     	 }
-    	 if (this.moving) {
-	        for (int i=0;i<widthA;i++) {
+    	 if(collision2==false) {
+    		 this.w = Gravity2;
+    	 }
+    	if (this.moving) {
+    		for (int i=0;i<widthA;i++) {
 	        	for (int j=0;j<heightA;j++) {
 	        		collision = isCollision(futurX-i, futurY-j);
 	        		if(collision==true) {break;}
@@ -135,13 +199,33 @@ public class WindowGame extends BasicGame {
 	            this.x = futurX;
 	            this.y = futurY;
 	        }
-		 /*	switch (this.direction) {
-	            case 0: this.y -= .2f * delta; break;
-	            case 1: this.x -= .2f * delta; break;
-	            case 2: this.y += .2f * delta; break;
-	            case 3: this.x += .2f * delta; break;
-	        }*/
-        }
+    			 	
+    		}
+		if (this.moving2){
+			for (int i=0;i<widthA;i++) {
+	        	for (int j=0;j<heightA;j++) {
+	        		collision2 = isCollision(futurX2-i, futurY2-j);
+	        		if(collision2==true) {break;}
+	        		}
+	        	if(collision2==true) {break;}
+	        	}
+	        
+	        if (collision2) {
+	            this.moving2 = false;
+	        } 
+	        else {
+	            this.v = futurX2;
+	            this.w = futurY2;
+	        }
+    			 	
+    		}
+    			/*switch (this.direction2){
+				 	case 0: this.w -= .2f * delta; break;
+		            case 1: this.v -= .2f * delta; break;
+		            case 2: this.w += .2f * delta; break;
+		            case 3: this.v += .2f * delta; break;
+    			}*/
+    		
     }
     
     private boolean isCollision(float x, float y) {
@@ -166,6 +250,15 @@ public class WindowGame extends BasicGame {
         }
         return futurX;
     }
+    
+    private float getFuturX2(int delta) {
+        float futurX = this.v;
+        switch (this.direction2) {
+        case 1: futurX = this.v - .4f * delta; break;
+        case 3: futurX = this.v + .4f * delta; break;
+        }
+        return futurX;
+    }
 
     private float getFuturY(int delta) {
         float futurY = this.y;
@@ -176,9 +269,24 @@ public class WindowGame extends BasicGame {
         return futurY;
     }
     
+    private float getFuturY2(int delta) {
+        float futurY = this.w;
+        switch (this.direction2) {
+        case 0: futurY = this.w - .4f * delta; break;
+        case 2: futurY = this.w + .4f * delta; break;
+        }
+        return futurY;
+    }
+    
     private float getGravity(int delta) {
     	float Gravity = this.y;
     	Gravity=this.y+.6f*delta;
+    	return Gravity;
+    }
+    
+    private float getGravity2(int delta) {
+    	float Gravity = this.w;
+    	Gravity=this.w+.6f*delta;
     	return Gravity;
     }
     
