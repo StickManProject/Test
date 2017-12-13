@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="2017.10.11" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="Tileset/Fond.tsx"/>
+ <tileset firstgid="1025" source="Tileset/logic2.tsx"/>
+ <tileset firstgid="1050" source="Tileset/ground.tsx"/>
+ <tileset firstgid="1051" source="Tileset/Stree.tsx"/>
+ <tileset firstgid="1123" source="Tileset/sl.tsx"/>
+ <tileset firstgid="1124" source="Tileset/sr.tsx"/>
+ <tileset firstgid="1125" source="Tileset/dt.tsx"/>
+ <tileset firstgid="1129" source="Tileset/rock.tsx"/>
+ <layer name="fond" width="32" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACw3TA7IYCgIAwbexbdu2bdu2bf3Ytm3btm3btrNdNX2EORAQEHCQQxzmCEc5xnFOcJJTnOYMZznHeS5wkUtc5gpXucZ1bnCTW9zmDne5x30e8JBHPOYJT3nGc17wkle85g1vecd7PvCRT3zmC1/5xnd+8JNf/OYPf/lHwP9EIAIThKAEIzghCEkoQhOGsIQjPBGISCQiE4WoRCM6MYhJLGITh7jEIz4JSEgiEpOEpCQjOSlISSpSk4a0pCM9GchIJjKThaxkIzs5yEkucpOHvOQjPwUoSCEKU4SiFKM4JShJKUpThrKUozwVqEglKlOFqlSjOjWoSS1qU4e61KM+DWhIIxrThKY0ozktaEkrWtOGtrSjPR3oSCc604WudKM7PehJL3rTh7704z/6M4CBDGIwQxjKMIYzgpGMYjRjGMs4xjOBiUxiMlOYyjSmM4OZzGI2c5jLPOazgIUsYjFLWMoylrOClaxiNWtYyzrWs4GNbGIzW9jKNrazg53sYjd72Ms+9nOAgxziMEc4yjGOc4KTnOI0ZzjLOc5zgYtc4jJXuMo1rnODm9ziNne4yz3u84CHPOIxT3jKM57zgpe84jVveMs73vOBj3ziM1/4yje+84Of/OI3f/jLPwIC+Z9ABCYIQQlGcEIQklCEJgxhCUd4IhCRSEQmClGJRnRiEJNYxCYOcYlHfBKQkEQkJglJSUZyUpCSVKQmDWlJR3oykJFMZCYLWclGdnKQk1zkJg95yUd+ClCQQhSmCEUpRnFKUJJSlKYMZSlHeSpQkUpUpgpVqUZ1alCTWtSmDnWpR30a0JBGNKYJTWlGc1rQkla0pg1taUd7OtCRTnSmC13pRnd60JNe9KYPfenHf/RnAAMZxGCGMJRhDGcEIxnFaMYwlnGMZwITmcRkpjCVaUxnBjOZxWzmMJd5zGcBC1nEYpawlGUsZwUrWcVq1rCWdaxnAxvZxGa2sJVtbGcHO9nFbvawl33s5wAHOcRhjnCUYxznBCc5xWnOcJZznOcCF7nEZa5wlWtc5wY3ucVt7nCXe9znAQ95xGOe8JRnPOcFL3nFa97wlne85wMf+cRnvvCVb3znBz/5xW/+8Jd/BAT2P4EITBCCEozghCAkoQhNGMISjvBEICKRiEwUohKN6MQgJrGITRziEo/4JCAhiUhMEpKSjOSkICWpSE0a0pKO9GQgI5nITBayko3s5CAnuchNHvKSj/wUoCCFKEwRilKM4pSgJKUoTRnKUo7yVKAilahMFapSjerUoCa1qE0d6lKP+jSgIY1oTBOa0ozmtKAlrWhNG9rSjvZ0oCOd6EwXutKN7vSgJ73oTR/60o//6M8ABjKIwQxhKMMYzghGMorRjGEs4xjPBCYyiclMYSrTmM4MZjKL2cxhLvOYzwIWsojFLGEpy1jOClayitWsYS3rWM8GNrKJzWxhK9vYzg52sovd7GEv+9jP/wGLejmxAAwAAA==
+  </data>
+ </layer>
+ <layer name="Avant" width="32" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3UV0/CUBjGcS76KSqggoJbFMW9o6g4QEFQcdY9+P6X/i84CWkO+JZDKCR9kl+ahne0tGkoFCRIf+bV8nf/G/u/8O3DdTjstOtePOzvhf/Mz7w32d+t5/jh2mFbekPCaxmgLowIohjU9DpNdtj1umGOMcQxglEkhPtNelWS1I9hHBOYxJRwhkmvyjT1M5hFCnOYF84w6VVJU7+ARWSwhGXhDJNelRXqV7GGdWxgUzjDpFdli/pt7GAXe1brd9ar/76P+/x+gCwOcYRj4T2Y9KrkqD/BKc5wjrxwhkmvSoH6C1yiiBKuhDNMelXK1FdwjRvcouqa8Wnpv9GS3sboZtxxfo8HPOIJz66aH85/UWujt9WMTr3j7foD7QB4sQAMAAA=
+  </data>
+ </layer>
+ <layer name="logic" width="32" height="24" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBQMNcDIgopHwdAE6PFIi/jEZcdouhkFgxXgS7Pk4FEwCgYjoHY6JxUDACSJUZEADAAA
+  </data>
+ </layer>
+</map>
